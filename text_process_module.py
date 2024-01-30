@@ -22,6 +22,9 @@ class text_process:
     def __init__(self):
         pass
     def make_abbreviator(self,text:str):
+        '''
+        Create abbreviation from a given text
+        '''
         t = text.split()
         abb = []
         for word in t:
@@ -30,7 +33,10 @@ class text_process:
         return ''.join(abb)
 
     def split_sentence(self, text, start_section, end_section):
-    #Spit sentence of a input text
+      ''' 
+      Remove header, footer and Spit sentence of given book 
+      Return: list of sentence
+      '''
       print("Splitting the sentences...")
       text = sent_tokenize(text)
       text = [re.sub(r'(\n)+', ' ', i) for i in text]
@@ -47,6 +53,9 @@ class text_process:
       return text
 
     def extract_nouns_and_verbsing(self,text):
+        '''
+        Extract and return list of noun and verbing from given text
+        '''
         # Tokenize the text into words
         words = word_tokenize(text)
 

@@ -29,16 +29,32 @@ class program:
         self.output_dir = output_dir
         self.text_process = text_process
         self.output_folder = output_folder
+
 ##### Preprocess part
-    def is_preprocess(self):
+    def is_preprocess(self):    
+        
+        """
+        Prompt user for preprocessing choice.
+        Returns:
+        bool: True if user wants to reselect files, False otherwise.
+        """
         use_proc = input('Welcome to GPTS!\nDo you wish to reselect files before using the program? \nIf yes, type Y or y. If no, press Enter to start:\n')
         if use_proc == 'Y' or use_proc == 'y':
-          print('WARNING! This will rewrite all existing .csv files.\nPress Ctrl+Z to cancel.\n')
+          print('WARNING! This will rewrite all existing .csv files.\n')
           return True
         else:
           return False
        
     def get_one_book_info(self,dir):
+        """
+        Retrieve information for a single book.
+
+        Parameters:
+        - dir (str): Path to the text file.
+
+        Returns:
+        dict: Information dictionary for the book.
+        """
         book_info = {}
         print(f'Opening: {dir} ...')
         print('Completing book data:')
@@ -88,11 +104,16 @@ class program:
             return book_info
 
     def process_all_book(self):
+        """
+        Process all books and return a dictionary containing book information.
+
+        Returns:
+        dict: Dictionary containing information for all books.
+        """
         txt_files = self.txt_files
         all_books = {}
         book_count = 0
-        #for dir in root.filenames: #FIX LATER: make the info-typing loop less tedious & create new object for each book
-        for dir in txt_files: #because it's meant to be for multiple files; if not, we can run without a loop
+        for dir in txt_files: 
               with open(dir, 'r', encoding="utf8") as f:
                   f = f.read()
                   book_info = self.get_one_book_info(dir)
@@ -102,9 +123,9 @@ class program:
                   book_count += 1
         return all_books
 
-##tại sao lại tạo nhiều layer rồi flatten nó đi, thấy đang bị lặp
 
-    def flatten_dict(self, all_books:dict): # Input: 3-layered dict with a possible list as value: {'x':{'y':['abc', 'def']}}. Each of these value should be appended the corresponding book_info as keys.
+    def flatten_dict(self, all_books:dict): 
+## Input: 3-layered dict with a possible list as value: {'x':{'y':['abc', 'def']}}. Each of these value should be appended the corresponding book_info as keys.
         flat_dict = []
         info_list = list(self.info_template.keys())
         for abb, abb_value in copy.deepcopy(all_books).items():
@@ -113,7 +134,7 @@ class program:
             flat_dict.append(dict({'Sentence' : sentence, 'Abbreviation': abb} | abb_value)) #union to merge 2 dictionaries
         return flat_dict
 
-    def export_csv(self, all_books:dict): # ~3MB per book
+    def export_csv(self, all_books:dict):
         flat_dict = self.flatten_dict(all_books)
         df = pd.DataFrame.from_dict(flat_dict)
         df.to_csv(self.output_dir['all_books'], index=True)
@@ -124,7 +145,9 @@ class program:
           outfile.write(json_object)
     
     def seperate_sent_from_all_book(self, all_book_df, rule_dict):
-        #use to divide sentences from all books into 2 subset: one subset with definition sentences (based on provided rule) and one subset with remaining sentences
+        '''Use to divide sentences from all books into 2 subset: 
+        one subset with definition sentences (based on provided rule) and one subset with remaining sentences
+        '''
         df = all_book_df
         data_with_scores = []
         data_nan_scores = []
@@ -151,6 +174,16 @@ class program:
         return df_sent_def, df_sent_other
 
     def get_keyword_from_list_sent(self,sent_list):
+        """
+        Extract keywords from a list of sentences.
+
+        Parameters:
+        - sent_list (list): List of sentences.
+
+        Returns:
+        pd.DataFrame: DataFrame containing keywords.
+        """
+
         keyword_dict = {}
         for i in sent_list:
             keywords = self.text_process.extract_nouns_and_verbsing(i)
@@ -162,7 +195,7 @@ class program:
 
     def preprocess(self):
       """
-      combile all steps neeeded to process all books from txt format to final format, which is 4 csv file 
+      Combile all steps neeeded to process all books from txt format to final format, which is 4 csv file 
       First csv file contains all sentences from all book, with one sentence in one row, and have following columns: sentence, book title, book author, ....
       Second csv file contains definition sentences (based on provided rule) and same column as first csv file
       Third csv file contains remaining sentences and same column as first csv file
@@ -188,6 +221,16 @@ class program:
 #### Main function part
 
     def get_definition(self, keyword):
+        
+        """
+        Get definitions for a given keyword.
+
+        Parameters:
+        - keyword (str): Keyword to search for.
+
+        Returns:
+        str: Concatenated sentences and book information.
+        """
         sent_def =  pd.read_csv(self.output_dir['sent_def'])
         sent_other = pd.read_csv(self.output_dir['sent_other'])
 
@@ -228,6 +271,15 @@ class program:
         return '#'.join(output_text)
 
     def search_keyword_all_text(self, keyword): #all_books.csv with read_csv
+        """
+        Search for a keyword in all book text.
+
+        Parameters:
+        - keyword (str): Keyword to search for.
+
+        Returns:
+        tuple: (contains_keyword (bool), all_relw (dict)).
+        """
         stop_words = set(stopwords.words('english'))
         all_books = pd.read_csv(self.output_dir['all_books'])
         all_relw = {} #dict of all words in sentences containing the keyword
@@ -245,16 +297,35 @@ class program:
           contains_keyword = False
         else:
           contains_keyword = True
-        return contains_keyword, all_relw #di chuyển vị trí của return so với code gốc
+        return contains_keyword, all_relw 
 
     def top_related(self, all_relw):
+        """
+        Get top related words based on frequency.
+
+        Parameters:
+        - all_relw (dict): Dictionary containing word frequencies.
+
+        Returns:
+        pd.DataFrame: DataFrame containing top related words.
+        """
         word_rank = pd.DataFrame.from_dict(all_relw, orient='index', columns=['Frequency']).sort_values(by='Frequency', ascending=False)
         word_rank.index.name = 'Related Word'
         cloud_text = word_rank.head(20)
         return cloud_text
 
-    def create_wordcloud(self, cloud_text, bg): #select the background picture as cloud template
-        bg = bg #user choice ????, variable ở đây nên là gì
+    def create_wordcloud(self, cloud_text, bg): 
+        """
+        Create and save a word cloud image.
+
+        Parameters:
+        - cloud_text (pd.DataFrame): DataFrame containing words and frequencies.
+        - bg (str): Path to the background image.
+
+        Returns:
+        None
+        """
+        bg = bg 
 
         cloud_text_to_list = cloud_text.index.tolist()
 
