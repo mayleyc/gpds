@@ -47,6 +47,7 @@ NB: Server computers will most likely not work, since this program requires a co
 		- Optional data (after the program has auto-detected mandatory data) can be skipped by pressing Enter. After gathering book information, the program will preprocess the text into 4 .csv files, and then open the program window.
 
 	+ MAIN PROGRAM:
+		- Begin by typing your keyword. There is no need to click on the black input textbox, since the program will display your text input immediately. If you accidentally clicked onto a non-alphanumeric (non-Unicode) key, simply press Backspace to remove it.
 
 		- Press either Definition or Word Cloud to initiate a process. Pressing either button afterwards, or pressing the same button again will clear the existing output. However, word clouds are still saved in the output folder for every new cloud output.
   
