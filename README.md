@@ -1,5 +1,4 @@
-# GPDS
-Greek Philosophy Definition Search
+# Welcome to GPDS - Greek Philosophy Definition Search!
 GPDS - Greek Philosophy Definition Search program
 by Nguyen Hoa Quynh Nhung and Tran Nguyen Anh Thu (CiMEC)
 Course: Introduction to Computer Programming (Python) - Sep 2023
