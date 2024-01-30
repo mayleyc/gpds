@@ -28,6 +28,7 @@ NB: Server computers will most likely not work, since this program requires a co
 		- Optional data (after the program has auto-detected mandatory data) can be skipped by pressing Enter. After gathering book information, the program will preprocess the text into 4 .csv files, and then open the program window.
 
 	+ MAIN PROGRAM:
+		- Begin by typing your keyword. There is no need to click on the black input textbox, since the program will display your text input immediately. If you accidentally clicked onto a non-alphanumeric (non-Unicode) key, simply press Backspace to remove it.
 		- Press either Definition or Word Cloud to initiate a process. Pressing either button afterwards, or pressing the same button again will clear the existing output. However, the word clouds are still saved in the output folder for every new cloud output.
 		- To make outputs more interesting, results after each time will be randomized in some way. For text, the program may pick some new sentences (if available). For word clouds, the color and cloud shape might be different. 
 		- Click Save to export your text result into a .txt file to the location of choice. The program opens up a tkinter window where you can save the file as any file name or file type (default .txt). This does not apply to images, since they are already saved in the output folder. There will be a message in the terminal to confirm whenever your outputs have been saved.
