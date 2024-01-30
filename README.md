@@ -13,7 +13,7 @@ NB: Server computers will most likely not work, since this program requires a co
 
 - A code editor + a Python >=3.9 interpreter to avoid incompatibility.
   
-- It is recommended to create a new virtual environment (either with conda or venv) and install the packages in the requirements_pip.txt file.
+- It is recommended to create a new virtual environment (either with conda or venv) and install the packages in the requirements.txt file.
 
 2. INSTALL:
    
