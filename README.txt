@@ -6,7 +6,7 @@ Course: Introduction to Computer Programming (Python) - Sep 2023, UniTrento
 - Computer with 8GB RAM and above (The program works on a 4GB machine; however, the Save function is not guaranteed with low RAM, due to running a tkinter thread in parallel.)
 NB: Server computers will most likely not work, since this program requires a computer with a display window for pygame.
 - A code editor + a Python >=3.9 interpreter to avoid incompatibility.
-- It is recommended to create a new virtual environment (either with conda or venv) and install the packages in the requirements_pip.txt file.
+- It is recommended to create a new virtual environment (either with conda or venv) and install the packages in the requirements.txt file.
 
 2. INSTALL:
 - Download the package from Github and unzip as a folder. Open this folder in your code editor.
