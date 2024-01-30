@@ -1,6 +1,6 @@
 GPDS - Greek Philosophy Definition Search program
 by Nguyen Hoa Quynh Nhung and Tran Nguyen Anh Thu (CiMEC)
-Course: Introduction to Computer Programming (Python) - Sep 2023
+Course: Introduction to Computer Programming (Python) - Sep 2023, UniTrento
 
 1. REQUIREMENTS:
 - Computer with 8GB RAM and above (The program works on a 4GB machine; however, the Save function is not guaranteed with low RAM, due to running a tkinter thread in parallel.)
