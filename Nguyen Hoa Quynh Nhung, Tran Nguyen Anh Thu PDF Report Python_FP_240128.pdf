@@ -1,0 +1,126 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margin=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+\usepackage{tabularray}
+\usepackage{makecell}
+\usepackage{graphicx} % support the \includegraphics command and options
+\usepackage{float} %for H
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\title{Greek Philosphy Definition Search (GPDS) Program}
+\author{Members: Nguyen Hoa Quynh Nhung, Tran Nguyen Anh Thu}
+\date{Introduction to Computer Programming (Python), Sep 2023 \\University of Trento, Italy} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+\section{Project Description}
+ 
+Greek Philosophy Definition Search (GPDS) is a small program aimed at beginners and enthusiasts of Ancient Greek Philosophy, retrieving text from relevant English works between 1882 and 1920. The program may be used for research purposes by suggesting relevant keywords and definitions, or simply for creating graphic art inspired by philosophical concepts.
+The program offers two main functions: Definition Search and Word Cloud Builder, as well as a save option for text output.
+
+\subsubsection{General Concept} The initial concept was a chatbot program who could respond to the user with a 5-sentence (maximum) paragraph on a certain topic, made by appending sentences from relevant books. The concept was later changed into providing 5 different definitive sentences for the requested keyword, due to the paragraph lacking in cohesion at times. \\
+\\The project's theme is Ancient Greek Philosophy, since this is a topic where Project Gutenberg's XIX-XX century books would not be outdated. The 5 default books in this program, all written by popular researchers of their time, range from summarization (by John Marshall) to critique and commentary (A.W. Benn, Friedrich Nietzsche). \\
+\\We also decided to simplify user interaction to input and output textboxes, along with adding the word cloud feature. The current user interface now consists of one main window, a tkinter save-file window for the Save feature, and the terminal mainly for text preprocessing.
+
+\subsection{Components}
+The program requires the following folders and files to function properly:
+\begin{center}
+\begin{table}[H]
+	\begin{tblr}{| l | l |p{7.5cm}|}\hline
+ 	\textbf{Folder} & \textbf{Files within} & \textbf{Description} \\ \hline
+ 	
+	Main folder & \makecell[l]{main.py,\\main\_class.py\\program\_module.py,\\text\_process\_module.py,\\README.txt,\\requirements.txt} & \makecell[l]{The root file is main.py.\\The 3 other .py files are its modules.\\The 'README' and 'requirements' files \\are used for installation.} \\ \hline
+	output & \makecell[l]{.csv - preprocessed text data;\\.png - word cloud images} & \makecell[l]{The .csv files and cloud images are \\in the same \textbf{output} folder for convenience, \\since the .csv files are also \\the output of text preprocessing.} \\ \hline
+	original\_txt & \makecell[l]{.txt - unprocessed text data} & \makecell[l]{The .txt files are sources for the .csv files.\\Its contents are not compulsory for \\running main.py, but are needed for \\text preprocessing.} \\ \hline
+	images & \makecell[l]{.png - for buttons;\\.jpeg - for background (bg) assets} & \makecell[l]{These files are replaceable, \\as long as the new file shares \\the same name, size and type.} \\ \hline
+	\end{tblr}
+\end{table}
+\end{center}
+
+\subsection{Development}
+
+\subsubsection{Data Structure} Initially, the team planned to organize the data as a .json file. However, to facilitate later .csv files down the pipeline, the team decided to use only .csv files for the entire data structure. The option to export all sentences as a .json file is still available as a function in program\_module.py, if the user wishes to utilize it for another purpose. This is why the hierarchical data structure is still retained for flexibility, instead of duplicating information for each dataframe item.\\
+\\
+The current data include both mandatory and optional data. The optional data are mostly not called during the main.py process, though they may aid users during citation.\\
+\\ The processed .csv files include the all\_books.csv for the word cloud feature, and the other three files: keyword.csv, sent\_def.csv, and sent\_other.csv. To generate five definitions (maximum), the program selects at most two random sentences from the higher-priority sent\_def.csv file, then selects three or more sentences from sent\_other.csv until there are exactly five sentences. The higher-priority file contains sentences with the desired structures that characterize a definition, ranked as follows (the smaller, the higher): "defined":1, "definition":1, "refers":2, "refer":2, "means":2, "mean":2, "imply":3, "implies":3, "implied": 3, "can be":4. \\
+\\The sent\_other.csv contain all sentences that do not contain these structures, but could potentially contain definitive (e.g. "X + is/are") or informative sentences. For sent\_other.csv, the program will select items containing the most occurrences of the requested keyword. The last file, keyword.csv is originally meant for suggesting and/or limiting the keywords that the user could use as input. However, due to time limitations, this auto-suggestion (text prediction) feature has not been implemented yet.
+\begin{figure}[H]
+	\includegraphics[width=0.7\linewidth]{flowchart.jpg}
+	\caption{Flowchart from preprocessing to export.}
+	\label{fig:chart1}
+\end{figure}
+\subsubsection{Main Libraries}
+\begin{itemize}
+	\item {pandas: flexible data structure and easy export;}
+	\item {nltk: natural language processing to separate sentences instead of relying on punctuation/spelling rules;}
+	\item {wordcloud: generates a word cloud from a given string, fully customizable with image templates;}
+	\item {pygame: an intuitive GUI option for simple games and programs, also very OOP-friendly. \\Downside: likely to cause crashes and slowdowns if best practices are not followed.}
+\end{itemize}
+
+\subsection{Future Suggestions} There are many possible ways to enrich the functionality and optimize this app, given more time and coding experience:
+\begin{itemize}
+	\item {Use the keyword.csv file to make keyword suggestions while the user is typing;}
+	\item {Increase the word cloud's image quality. The current image output is a 370x370 pixels image (excluding the borders which pad the image to 640x480);}
+	\item {Allow for copying to user clipboard and saving directly by right-clicking;}
+	\item {Experiment with more flexible GUI options such as Pyqt5, wxpython or GTK.}
+\end{itemize}
+\subsection{Contributions} 
+Member Nguyen Hoa Quynh Nhung contributed to: the definition feature (nltk-to-csv component \textbf{(3 csv files)} + the definition search function), as well as code optimization throughout the project (extensive code cleanup and OOP changes for \textbf{program\_module + text\_process}; small error fix to main.py). \\
+\\
+Member Tran Nguyen Anh Thu is responsible for: the word cloud feature (the text preprocess component until \textbf{all\_books.csv} + the word cloud function), the pygame GUI (\textbf{main.py + main\_class.py} with OOP), the PDF report and README file. All members are responsible for the project's general idea and feature concepts.
+\section{Links}
+\begin{itemize}
+	\item {Github repository at: https://github.com/mayleyc/gpds}
+	\item {All books retrieved from: https://www.gutenberg.org/ \\NB: The .txt files used for processing are also kept in the txt\_original folder.}
+\end{itemize}
+
+\end{document}
