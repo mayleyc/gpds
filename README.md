@@ -5,7 +5,7 @@ by Nguyen Hoa Quynh Nhung and Tran Nguyen Anh Thu (CiMEC)
 
 Course: Introduction to Computer Programming (Python) - Sep 2023, UniTrento
 
-1. REQUIREMENTS:
+# 1. REQUIREMENTS:
 
 - Computer with 8GB RAM and above (The program works on a 4GB machine; however, the Save function is not guaranteed with low RAM, due to running a tkinter thread in parallel.)
 
@@ -15,7 +15,7 @@ NB: Server computers will most likely not work, since this program requires a co
   
 - It is recommended to create a new virtual environment (either with conda or venv) and install the packages in the requirements.txt file.
 
-2. INSTALL:
+# 2. INSTALL:
    
 - Download the package from Github and unzip as a folder. Open this folder in your code editor.
   
@@ -25,7 +25,7 @@ NB: Server computers will most likely not work, since this program requires a co
   
 	pip install -r requirements.txt (either pip or pip3), then press Enter.
 
-3. RUNNING MAIN.PY:
+# 3. RUNNING MAIN.PY:
    
 - BEFORE RUNNING: The program allows for customization by replacing asset images and .txt files of your choice.
   
@@ -47,9 +47,9 @@ NB: Server computers will most likely not work, since this program requires a co
 		- Optional data (after the program has auto-detected mandatory data) can be skipped by pressing Enter. After gathering book information, the program will preprocess the text into 4 .csv files, and then open the program window.
 
 	+ MAIN PROGRAM:
-		- Begin by typing your keyword. There is no need to click on the black input textbox, since the program will display your text input immediately. If you accidentally clicked onto a non-alphanumeric (non-Unicode) key, simply press Backspace to remove it.
+		- Begin by typing your keyword. There is no need to click on the black input textbox, since the program will display your text input immediately. If you accidentally clicked onto a non-alphanumeric (non-Unicode) key, simply press Backspace to remove it. 
 
-		- Press either Definition or Word Cloud to initiate a process. Pressing either button afterwards, or pressing the same button again will clear the existing output. However, word clouds are still saved in the output folder for every new cloud output.
+		- Press either Definition or Word Cloud to initiate a process. Pressing either button afterwards, or pressing the same button again will clear the existing output. However, word clouds are still saved in the output folder for every new cloud output. However, the program can sometimes be unresponsive. In that case, please wait for some seconds and try again.  
   
 		- To make outputs more interesting, results after each time will be randomized in some way. For text, the program may pick some new sentences (if available). For word clouds, the color and cloud shape might be different.
   
@@ -57,7 +57,7 @@ NB: Server computers will most likely not work, since this program requires a co
   
 		- Close the program by clicking the top-right X button.
 
-4. Data used, with links:
+# 4. Data used, with links:
    
 * List of books used from Gutenberg:
   
