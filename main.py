@@ -132,7 +132,6 @@ def save_btn_func(is_cloud, program_output_txt):
     # Open tkinter window to select files, then close the window
     root = tk.Tk()
     root.withdraw()
-    #btn = Button(root, text="Click Me", command=threading.Thread(target=combine).start)
     root.file_path = tk.filedialog.asksaveasfilename(defaultextension=".txt",
                                                      filetypes=[("Text files",
                                                                  "*.txt"),
@@ -183,7 +182,7 @@ def main():
 
     #Display instruction texts on the screen
     instruct_text_1 = main_class.Text(
-        "Enter your keyword, then click on SUMMARIZER or WORD CLOUD to try out!",
+        "Enter your keyword, then click on DEFINITION or WORD CLOUD to try out!",
         1, (255, 255, 255), (22, 22, 22), FONT_SIZE)
     instruct_text_1.display_text_wrapped(50, 27, False, False, SCREEN)
 
