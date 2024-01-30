@@ -3,7 +3,7 @@ GPDS - Greek Philosophy Definition Search program
 
 by Nguyen Hoa Quynh Nhung and Tran Nguyen Anh Thu (CiMEC)
 
-Course: Introduction to Computer Programming (Python) - Sep 2023
+Course: Introduction to Computer Programming (Python) - Sep 2023, UniTrento
 
 1. REQUIREMENTS:
 
