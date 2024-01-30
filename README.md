@@ -48,7 +48,7 @@ NB: Server computers will most likely not work, since this program requires a co
 
 	+ MAIN PROGRAM:
 
-		- Press either Definition or Word Cloud to initiate a process. Pressing either button afterwards, or pressing the same button again will clear the existing output. However, the word clouds are still saved in the output folder for every new cloud output.
+		- Press either Definition or Word Cloud to initiate a process. Pressing either button afterwards, or pressing the same button again will clear the existing output. However, word clouds are still saved in the output folder for every new cloud output.
   
 		- To make outputs more interesting, results after each time will be randomized in some way. For text, the program may pick some new sentences (if available). For word clouds, the color and cloud shape might be different.
   
