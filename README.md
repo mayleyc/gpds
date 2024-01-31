@@ -7,7 +7,7 @@ Course: Introduction to Computer Programming (Python) - Sep 2023, UniTrento
 
 ## 1. REQUIREMENTS:
 
-- Computer with 8GB RAM and above (The program works on a 4GB machine; however, the Save function is not guaranteed with low RAM, due to running a tkinter thread in parallel.)
+- Computer with 8GB RAM and above (The program works on a 4GB RAM virtual computer, but it runs quite slowly.)
 
 NB: Server computers will most likely not work, since this program requires a computer with a display window for pygame.
 
@@ -53,7 +53,7 @@ NB: Server computers will most likely not work, since this program requires a co
   
 		- To make outputs more interesting, results after each time will be randomized in some way. For text, the program may pick some new sentences (if available). For word clouds, the color and cloud shape might be different.
   
-		- Click Save to export your text result into a .txt file to the location of choice. The program opens up a tkinter window where you can save the file as any file name or file type (default .txt). This does not apply to images, since they are already saved in the output folder. There will be a message in the terminal to confirm whenever your outputs have been saved.
+		- Click Save to export your text result into a .txt file. They will be exported to the output folder, and when finished, a message will appear on the terminal. Images will be autosaved in the output folder when the program creates a word cloud, though when the user clicks Save, there will still be a reminder message like for text outputs.
   
 		- Close the program by clicking the top-right X button.
 
