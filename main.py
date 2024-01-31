@@ -133,7 +133,7 @@ def save_btn_func(is_cloud, program_output_txt):
     filename = 'text_result_' + time.strftime("%Y%m%d_%H%M%S")+'.txt'
     with open(filename, 'w') as file:
         file.write(program_output_txt)
-      print(f"Text saved to the output folder.")
+    print(f"Text saved to the output folder.")
   else:
     print("Image saved to the output folder.")
 
