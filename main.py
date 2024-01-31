@@ -88,7 +88,7 @@ def ds_btn_func(input_text, output_textbox):
                                      (255, 255, 255), (0, 0, 0), FONT_SIZE)
   show = displayed_output.display_text_wrapped(10, 5, True, True,
                                                output_textbox)
-  is_cloud = True
+  is_cloud = False
 
   return program_output_txt, show, is_cloud  # show is a type Rect variable
 
@@ -131,10 +131,10 @@ def save_btn_func(is_cloud, program_output_txt):
   if is_cloud == False:
     time = datetime.now()
     filename = 'text_result_' + time.strftime("%Y%m%d_%H%M%S")+'.txt'
-    with open(filename, 'w') as file:
+    with open(f'output/{filename}', 'w') as file:
         file.write(program_output_txt)
-    print(f"Text saved to the output folder.")
-  else:
+    print("Text saved to the output folder.")
+  elif is_cloud == True:
     print("Image saved to the output folder.")
 
 
@@ -151,7 +151,6 @@ def main():
   running = True
   input_text = ''
   show = ''
-  program_output_pic = ''
 
   while running:
     SCREEN.blit(BG_SCREEN, (0, 0))
@@ -210,8 +209,7 @@ def main():
     text_surface = input_font.render(input_text, True, (0, 255, 255),
                                      (0, 0, 0))
     SCREEN.blit(text_surface, (55, 85))
-    if type(program_output_pic) != str:
-      print('Image saved in the output folder.')
+
     if type(show) == pygame.surface.Surface:
       SCREEN.blit(show, (100, 225))
 
