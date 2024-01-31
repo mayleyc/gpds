@@ -6,6 +6,7 @@ import tkinter as tk
 import threading
 from PIL import Image
 from random import randint
+from datetime import datetime
 
 # Import the program modules and classes
 import main_class
@@ -125,26 +126,14 @@ def wc_btn_func(input_text):
   return program_output_pic, show, is_cloud
 
 
-#Function for the Save button
+#Function for the Save Text button
 def save_btn_func(is_cloud, program_output_txt):
-
-  def save_pic():
-    # Open tkinter window to select files, then close the window
-    root = tk.Tk()
-    root.withdraw()
-    root.file_path = tk.filedialog.asksaveasfilename(defaultextension=".txt",
-                                                     filetypes=[("Text files",
-                                                                 "*.txt"),
-                                                                ("All files",
-                                                                 "*.*")])
-    if root.file_path:
-      with open(root.file_path, 'w') as file:
-        file.write(program_output_txt)
-      print(f"File saved at: {root.file_path}")
-
   if is_cloud == False:
-    thread = threading.Thread(target=save_pic)
-    thread.start()
+    time = datetime.now()
+    filename = 'text_result_' + time.strftime("%Y%m%d_%H%M%S")+'.txt'
+    with open(filename, 'w') as file:
+        file.write(program_output_txt)
+      print(f"Text saved to the output folder.")
   else:
     print("Image saved to the output folder.")
 
