@@ -40,7 +40,7 @@ NB: Server computers will most likely not work, since this program requires a co
   
 - When prompted, press Y (in caps) to preprocess the texts first, or Enter to run the program as is.
 
-	+ PREPROCESS: Press Y again to confirm.
+	+ PREPROCESS: There will be a warning message about editing the .csv contents. At this point, press any key to confirm, or cancel via typing Ctrl+c (Windows), Ctrl+Z (Linux), or shutting down the terminal and start again.
 
 		- After locating the .txt files, the program will prompt the user to enter some information. Firstly, each file must be confirmed whether it is a Gutenberg-style ebook or not. If so, the user should select Y (yes) for this book. If not, select N (no) and enter mandatory details manually. The mandatory data must not be skipped, since they are used to generate the data structure.
   
