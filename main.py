@@ -190,8 +190,7 @@ def main():
         if event.key == pygame.K_ESCAPE:
           input_text = ''  # Clear input when press Esc
         elif event.key == pygame.K_BACKSPACE and input_text != '':
-          input_text = input_text[:
-                                  -1]  # Remove the last character on Backspace
+          input_text = input_text[:-1]  # Remove the last character on Backspace
         else:
           input_text += event.unicode
 
