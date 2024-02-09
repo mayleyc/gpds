@@ -2,8 +2,8 @@
 import sys
 import pygame
 from pygame.locals import QUIT
-import tkinter as tk
-import threading
+#import tkinter as tk
+#import threading
 from PIL import Image
 from random import randint
 from datetime import datetime
